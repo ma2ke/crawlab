@@ -28,9 +28,17 @@ ENV DEBIAN_FRONTEND noninteractive
 # set CRAWLAB_IS_DOCKER
 ENV CRAWLAB_IS_DOCKER Y
 
+## RUN sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list
+RUN echo "deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse" > /etc/apt/sources.list
+RUN echo "deb http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse" >> /etc/apt/sources.list
+## do update, upgrade (which may not be needed) & install:
+RUN apt-get update -y && apt-get -y upgrade
+
 # install packages
-RUN apt-get update \
-	&& apt-get install -y curl git net-tools iputils-ping ntp ntpdate python3 python3-pip nginx wget \
+RUN apt-get apt-get install -y curl git net-tools iputils-ping ntp ntpdate python3 python3-pip nginx wget \
 	&& ln -s /usr/bin/pip3 /usr/local/bin/pip \
 	&& ln -s /usr/bin/python3 /usr/local/bin/python
 
