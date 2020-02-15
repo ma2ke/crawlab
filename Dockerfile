@@ -38,7 +38,7 @@ RUN echo "deb http://mirrors.163.com/ubuntu/ trusty-backports main restricted un
 RUN apt-get update -y && apt-get -y upgrade
 
 # install packages
-RUN apt-get apt-get install -y curl git net-tools iputils-ping ntp ntpdate python3 python3-pip nginx wget \
+RUN apt-get install -y curl git net-tools iputils-ping ntp ntpdate python3 python3-pip nginx wget \
 	&& ln -s /usr/bin/pip3 /usr/local/bin/pip \
 	&& ln -s /usr/bin/python3 /usr/local/bin/python
 
